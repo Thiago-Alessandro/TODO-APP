@@ -1,0 +1,27 @@
+#divPrincipal{
+    display: flex;
+    justify-content: space-around;
+}
+
+#todo{
+
+    justify-content: center;
+    background-color: red;
+
+}
+
+#doing{
+
+    background-color: blue;
+
+}
+
+#done{
+
+    background-color: green;
+
+}
+
+.titulo{
+    align-self: center;
+}

@@ -18,22 +18,67 @@
 
   <button (click)="cadastrarTarefa()">Cadastrar</button>
 
-  <div *ngFor="let tarefa of tarefaLista; index as indice">
-    
+  <div id="divPrincipal">
+
+    <div id="todo">
+      <h1>TO-DO</h1>
+        <div *ngFor="let tarefa of tarefasTodo; index as indice">
+
+          Tarefa {{indice+1}}: {{ tarefa.nome }} 
+
+          <select [(ngModel)]="tarefa.categoria">
+            <option value="TO-DO" >TO-DO</option>
+            <option value="DOING" >DOING</option>
+            <option value="DONE" >DONE</option>
+          </select>
+      
+          <button (click)="removerTodo(indice)">Remover</button>
+          <button (click)="alterar(tarefa, indice)">alterar</button>
+      
+
+        </div>
+    </div>
+
     <br>
 
-    Tarefa {{indice+1}}: {{ tarefa.nome }} 
+    <div id="doing">
+      <h1>DOING</h1>
+        <div *ngFor="let tarefa of tarefasDoing; index as indice">
 
-    <select [(ngModel)]="tarefa.categoria">
-      <option value="TO-DO" >TO-DO</option>
-      <option value="DOING" >DOING</option>
-      <option value="DONE" >DONE</option>
-    </select>
+          Tarefa {{indice+1}}: {{ tarefa.nome }} 
 
-    <button (click)="remover(indice)">Remover</button>
-    <button (click)="salvar(tarefa)">salvar</button>
+          <select [(ngModel)]="tarefa.categoria">
+            <option value="TO-DO" >TO-DO</option>
+            <option value="DOING" >DOING</option>
+            <option value="DONE" >DONE</option>
+          </select>
+      
+          <button (click)="removerDoing(indice)">Remover</button>
+          <button (click)="alterar(tarefa, indice)">alterar</button>
+          
+        </div>
+    </div>
 
-  </div>
+    <div id="done">
+      <h1>DONE</h1>
+        <div *ngFor="let tarefa of tarefasDone; index as indice">
+
+          Tarefa {{indice+1}}: {{ tarefa.nome }} 
+
+          <select [(ngModel)]="tarefa.categoria">
+            <option value="TO-DO" >TO-DO</option>
+            <option value="DOING" >DOING</option>
+            <option value="DONE" >DONE</option>
+          </select>
+      
+          <button (click)="removerDone(indice)">Remover</button>
+          <button (click)="alterar(tarefa, indice)">alterar</button>
+          
+      </div>
+    </div>
+    
+  </div> 
+  
 
 
 </body>
