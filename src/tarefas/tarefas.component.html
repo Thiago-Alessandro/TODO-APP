@@ -13,24 +13,46 @@
 </head>
 
 <body>
-    
-    <h1>cadastro de tarefas</h1>
+    <hr>
+        <h1 class="centralizar"> 
+            cadastro de tarefas 
+        </h1>
+    <br>
 
-    <input type="text" placeholder="descricao tarefa" [(ngModel)]="descricaoTarefa">
-    <select [(ngModel)]="categoriaSelecionada">
-        <option *ngFor="let categoria of categoriasLista">
-            {{categoria}}
-        </option>
-    </select>
+    <div class="centralizar">
+        <input type="text" placeholder="descricao tarefa" [(ngModel)]="descricaoTarefa">
+        <select [(ngModel)]="categoriaSelecionada">
+            <option *ngFor="let categoria of categoriasLista">
+                {{categoria}}
+            </option>
+        </select>
+        <button *ngIf="!editando" (click)="cadastrarTarefa()">Cadastrar</button>
+    </div>
 
-    <div>
-        <div *ngFor="let categoria of categoriasLista">
-            {{categoria}}
+    <br>
+    <hr>
+
+    <br>
+
+    <div id="conteudo">
+        <div id = "categorias" *ngFor="let categoria of categoriasLista">
+           <div class="centralizar"> 
+                {{categoria}}
+            </div>
+            <hr>
+            <div id="tarefa" *ngFor="let tarefa of getTarefas(categoria)">
+
+                {{tarefa.descricao}}
+
+                <button id="remover" *ngIf="!editando" (click)="removerTarefa(tarefa)">remover</button>
+                <button id="editar" *ngIf="!editando" (click)="editar(tarefa)">editar</button>
+
+                <button id="salvar" *ngIf="editando" (click)="salvar(tarefa)">salvar</button>
+                <button id="cancelar" *ngIf="editando" (click)="cancelar()">cancelar</button>
+
+            </div>
         </div>
-        <hr>
-        <div *ngFor="let tarefa of getTarefas(categoria)">
-            {{tarefa.nome}}
-        </div>
+        
     </div>
 
 

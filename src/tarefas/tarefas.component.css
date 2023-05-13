@@ -1,0 +1,41 @@
+#conteudo{
+    display: flex; 
+    justify-content: space-around;
+}
+.centralizar{
+    display: flex;
+    justify-content: center;
+}
+
+#tarefa{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: white solid 5px;
+    border-radius: 30px;
+    background-color:bisque;
+    color: black;
+    height: 50px;
+}
+
+#categorias{
+    background-color: rgb(44, 5, 90);
+    border-radius: 15px;
+}
+
+#remover{
+background-color: red;
+border-radius: 15px ;
+}
+#cancelar{
+    background-color: red;
+    border-radius: 15px ;
+}
+#salvar{
+    background-color: darkorange;
+    border-radius: 15px;
+}
+#editar{
+    background-color: darkorange;
+    border-radius: 15px;
+}

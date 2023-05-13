@@ -7,89 +7,21 @@
   <title>Document</title>
 </head>
 <body>
+<div id="cabecalho">
+
+  <br>
+
+  <button class="botoes" routerLink="/tarefas" >cadastrar Tarefa</button>
   
-<router-outlet></router-outlet>
-
-<a routerLink="/tarefas" >cadastrar Tarefa</a>
-
-<br>
-
-<a routerLink="/categoria" >cadastrar Categoria</a>
-
-<br>
-
-  <button (click)="cadastrarTarefa()">Cadastrar</button>
-
-  <ng-container id="divPrincipal" >
-
-    <div id="todo" >
-      <h1>TO-DO</h1>
-
-        <div *ngFor="let tarefa of tarefaLista;index as indice" [ngSwitch]="tarefa.categoria">
-          <div *ngSwitchCase="'TO-DO'">
-
-          Tarefa {{indice+1}}: {{ tarefa.nome }} 
-
-          <select [(ngModel)]="tarefa.categoria">
-            <option value="TO-DO" >TO-DO</option>
-            <option value="DOING" >DOING</option>
-            <option value="DONE" >DONE</option>
-          </select>
-      
-          <button (click)="removerListaTotal(indice)">Remover</button>
-          <button (click)="alterar(tarefa)">alterar</button>
-      
-          </div>
-
-        </div>
-      </div>
-
-    <br>
-
-    <div id="doing" >
-      <h1>DOING</h1>
-
-      <div *ngFor="let tarefa of tarefaLista;index as indice" [ngSwitch]="tarefa.categoria">
-        <div *ngSwitchCase="'DOING'">
-
-          Tarefa {{indice+1}}: {{ tarefa.nome }} 
-
-          <select [(ngModel)]="tarefa.categoria">
-            <option value="TO-DO" >TO-DO</option>
-            <option value="DOING" >DOING</option>
-            <option value="DONE" >DONE</option>
-          </select>
-      
-          <button (click)="removerListaTotal(indice)">Remover</button>
-          <button (click)="alterar(tarefa)">alterar</button>
-          
-        </div>
-        </div>
-    </div>
-
-    <div id="done" >
-      <h1>DONE</h1>
-
-      <div *ngFor="let tarefa of tarefaLista;index as indice" [ngSwitch]="tarefa.categoria">
-        <div *ngSwitchCase="'DONE'">
-
-          Tarefa {{indice+1}}: {{ tarefa.nome }} 
-
-          <select [(ngModel)]="tarefa.categoria">
-            <option value="TO-DO" >TO-DO</option>
-            <option value="DOING" >DOING</option>
-            <option value="DONE" >DONE</option>
-          </select>
-      
-          <button (click)="removerListaTotal(indice)">Remover</button>
-          <button (click)="alterar(tarefa)">alterar</button>
-          
-        </div>
-      </div>
-    </div>
-   
-  </ng-container> 
+  <br>
   
+  <button class="botoes" routerLink="/categoria" >cadastrar Categoria</button>
+  
+</div>
+
+
+
+  <router-outlet></router-outlet>
 
 
 </body>

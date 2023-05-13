@@ -14,15 +14,26 @@
 
 <body>
     
-    <h1>cadastro de categorias</h1>
+    <h1 class ="centralizar">cadastro de categorias</h1>
 
-    <input type="text" placeholder="nome da categoria" [(ngModel)]="nomeCategoria">
+    <div class ="centralizar">
+        <input type="text" placeholder="nome da categoria" [(ngModel)]="nomeCategoria">
 
-    <button (click)="cadastrarCategoria()">Cadastrar</button>
+        <button (click)="cadastrarCategoria()">Cadastrar</button>
+    </div>
 
     <div>
+        <h2 class ="centralizar">
+            Categorias cadastradas: 
+        </h2>
+
         <div *ngFor="let categoria of categoriasLista">
+
             {{categoria}}
+
+            <button (click)="removerCategoria(categoria)">
+                remover
+            </button>
         </div>
     </div>
 
