@@ -44,11 +44,12 @@
 
                 {{tarefa.descricao}}
 
-                <button id="remover" *ngIf="!editando" (click)="removerTarefa(tarefa)">remover</button>
-                <button id="editar" *ngIf="!editando" (click)="editar(tarefa)">editar</button>
+                <button id="remover" *ngIf="!tarefa.editando && tarefaEditando==null" (click)="removerTarefa(tarefa)">remover</button>
+                <button id="editar" *ngIf="!tarefa.editando && tarefaEditando==null" (click)="editar(tarefa)">editar</button>
+                <!-- se esta tarefa nao estiver em edicao e nhenhuma tarefa estar sendo editada pode-se remover ou editar -->
 
-                <button id="salvar" *ngIf="editando" (click)="salvar(tarefa)">salvar</button>
-                <button id="cancelar" *ngIf="editando" (click)="cancelar()">cancelar</button>
+                <button id="salvar" *ngIf="tarefa.editando" (click)="salvar(tarefa)">salvar</button>
+                <button id="cancelar" *ngIf="tarefa.editando" (click)="cancelar()">cancelar</button>
 
             </div>
         </div>

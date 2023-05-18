@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 interface Tarefa{
     descricao: string,
     categoria: string,
+    editando: boolean;
 }
 
 @Component({
@@ -19,35 +20,43 @@ export class TarefasComponent implements OnInit{
     categoriasLista: string []=[]
     tarefasLista: Tarefa[]=[]
 
+    tarefaEditando: Tarefa = null; //recebe a tarefa que esta sendo editada
+
     cadastrarTarefa():void{
 
         let tarefaCadastrada: Tarefa = {
             descricao: this.descricaoTarefa,
             categoria: this.categoriaSelecionada,
+            editando: false
         }
 
         this.tarefasLista.push(tarefaCadastrada)
         localStorage.setItem("tarefas", JSON.stringify(this.tarefasLista))
 
         this.descricaoTarefa = ""
-        this.categoriaSelecionada = ""
+        this.categoriaSelecionada = "" //limpa input
         
     }
 
     ngOnInit(){
 
-        let Tarefas = localStorage.getItem("tarefas")
+        let Tarefas = localStorage.getItem("tarefas");//recupera os itens que estao no localStorage
 
-        if(Tarefas){
-            this.tarefasLista = JSON.parse(Tarefas)
+        if (Tarefas) { //se nao estiver nulo
+            this.tarefasLista = JSON.parse(Tarefas);
+
+             this.tarefasLista.forEach((tarefa) => {
+                tarefa.editando = false;
+                // seta o editando para false (se nao da problema caso alguma propriedade antes ficou salva como true
+                // e recarregou a pagina [problema com estar nulo] )
+             });
         }
 
-        let Categorias = localStorage.getItem("categorias")
+        let Categorias = localStorage.getItem("categorias");
 
-        if(Categorias){
-            this.categoriasLista = JSON.parse(Categorias)
+        if (Categorias) {
+            this.categoriasLista = JSON.parse(Categorias);
         }
-
     }
 
     getTarefas(categoria:string):Tarefa[]{
@@ -63,33 +72,41 @@ export class TarefasComponent implements OnInit{
         localStorage.setItem("tarefas", JSON.stringify(this.tarefasLista))
     }
 
-    editando: boolean = false
-
-    editar(tarefa){
-        this.editando = true
+    editar(tarefa: Tarefa){
+        this.tarefaEditando = tarefa; 
         tarefa.editando = true
+
         this.descricaoTarefa = tarefa.descricao
         this.categoriaSelecionada = tarefa.categoria
+        //faz um pre set nos inputs com os atributos da tarefa em edicao
 
     }
 
     salvar(tarefa):void{
-        let tarefaEditada:Tarefa ={
-            descricao: this.descricaoTarefa,
-            categoria: this.categoriaSelecionada,
-        } 
 
-        this.tarefasLista.splice(this.tarefasLista.indexOf(tarefa), 1, tarefaEditada)
-        localStorage.setItem("tarefas", JSON.stringify(this.tarefasLista))
+            this.tarefaEditando.descricao = this.descricaoTarefa; 
+            this.tarefaEditando.categoria = this.categoriaSelecionada;
+            //seta as propriedades da tarefa que esta em edicao para com o conteudo dos inputs
 
-        this.descricaoTarefa = ""
-        this.categoriaSelecionada = ""
+            localStorage.setItem("tarefas", JSON.stringify(this.tarefasLista));
+      
+          this.descricaoTarefa = "";
+          this.categoriaSelecionada = ""; // Limpa o input
 
-        this.editando = false
+          tarefa.editando = false //tira a tarefa que chamou a funcao (mesma que esta sendo editada) do modo de edicao
+          this.tarefaEditando = null;  //seta a variavel de "qual tarefa esta sendo editada" para nulo
+      
+          
     }
 
     cancelar():void{
-        this.editando = false
+
+        this.tarefaEditando.editando=false
+        //tira a tarefa que estava sendo editada do modo de edicao
+
+        this.tarefaEditando = null
+        //seta a variavel de "qual tarefa esta sendo editada" para nulo
+
         this.descricaoTarefa = ""
         this.categoriaSelecionada = ""
     }
