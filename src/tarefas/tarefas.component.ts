@@ -23,19 +23,19 @@ export class TarefasComponent implements OnInit{
     tarefaEditando: Tarefa = null; //recebe a tarefa que esta sendo editada
 
     cadastrarTarefa():void{
-
-        let tarefaCadastrada: Tarefa = {
-            descricao: this.descricaoTarefa,
-            categoria: this.categoriaSelecionada,
-            editando: false
-        }
-
+        if(this.verificarTarefa()){
+            let tarefaCadastrada: Tarefa = {
+                descricao: this.descricaoTarefa,
+                categoria: this.categoriaSelecionada,
+                editando: false
+            }
+        
         this.tarefasLista.push(tarefaCadastrada)
         localStorage.setItem("tarefas", JSON.stringify(this.tarefasLista))
 
         this.descricaoTarefa = ""
         this.categoriaSelecionada = "" //limpa input
-        
+        }
     }
 
     ngOnInit(){
@@ -111,4 +111,43 @@ export class TarefasComponent implements OnInit{
         this.categoriaSelecionada = ""
     }
 
+    verificarTarefa():boolean{
+        
+        if(this.descricaoTarefa == "" || this.categoriaSelecionada==""){//se for nula
+            return false
+        }
+
+        for(let tarefa of this.tarefasLista){//se ja tiver uma igual
+            if(this.descricaoTarefa == tarefa.descricao){
+                return false
+            }
+        }
+        return true
+    }
+
+    // onDrop(){
+    //     console.log("opa caiu aqui")
+    // }
+    // itemArrastado:Tarefa
+    // onDragStart(event: any, tarefa: Tarefa) {
+    //     //this.itemArrastado = event.target;
+    //     this.itemArrastado = tarefa
+    //     console.log(tarefa)
+    //   }
+    
+    //   onDragOver(event: any) {
+    //     event.preventDefault();
+    //   }
+
+    //   areaDeSoltar
+    //   onDragEnd(event: any) {
+    //     console.log(event.target)
+    //     console.log(this.itemArrastado + "opa")
+    //     this.itemArrastado.categoria = event.target.class
+    //     console.log(this.itemArrastado + "opa2")
+    //     this.areaDeSoltar = this.itemArrastado;
+    //     this.itemArrastado = null;
+    //   }
+        //console.log("opa caiu aqui")
+      
 }

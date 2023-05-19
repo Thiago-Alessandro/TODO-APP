@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { forEach } from "@angular/router/src/utils/collection";
 
 @Component({
 templateUrl: "./categoria.component.html",
@@ -23,15 +24,30 @@ export class CategoriaComponent implements OnInit{
     }
 
     cadastrarCategoria():void{
-        this.categoriasLista.push(this.nomeCategoria)
-        localStorage.setItem('categorias', JSON.stringify(this.categoriasLista))
+        if(this.verificarCategoria()){
+            this.categoriasLista.push(this.nomeCategoria)
+            localStorage.setItem('categorias', JSON.stringify(this.categoriasLista))
 
-        this.nomeCategoria = ''
+            this.nomeCategoria = ''
+        }
     }
 
     removerCategoria(categoria):void{
         this.categoriasLista.splice(this.categoriasLista.indexOf(categoria),1)
         localStorage.setItem("categorias",JSON.stringify(this.categoriasLista))
+    }
+
+    verificarCategoria():boolean{
+       for(let categoria of this.categoriasLista){
+            if(categoria == this.nomeCategoria){
+                return false
+            }
+       }
+       if(this.nomeCategoria==""){
+        return false
+       }
+       
+        return true
     }
 
 }

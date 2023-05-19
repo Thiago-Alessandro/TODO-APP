@@ -26,7 +26,7 @@
                 {{categoria}}
             </option>
         </select>
-        <button *ngIf="!editando" (click)="cadastrarTarefa()">Cadastrar</button>
+        <button *ngIf="!tarefaEditando" (click)="cadastrarTarefa()">Cadastrar</button>
     </div>
 
     <br>
@@ -35,14 +35,18 @@
     <br>
 
     <div id="conteudo">
-        <div id = "categorias" *ngFor="let categoria of categoriasLista">
+        <div id = "categorias" *ngFor="let categoria of categoriasLista" >
+            <!-- (dragover)="onDragEnd($event)" class="{{categoria}}" -->
            <div class="centralizar"> 
                 {{categoria}}
             </div>
+            {{areaDeSoltar}}
             <hr>
-            <div id="tarefa" *ngFor="let tarefa of getTarefas(categoria)">
+            <!-- draggable="true" (dragover)="onDragOver($event)" (dragstart)="onDragStart($event, tarefa)" -->
+            <div id="tarefa" *ngFor="let tarefa of getTarefas(categoria)" >
 
                 {{tarefa.descricao}}
+                
 
                 <button id="remover" *ngIf="!tarefa.editando && tarefaEditando==null" (click)="removerTarefa(tarefa)">remover</button>
                 <button id="editar" *ngIf="!tarefa.editando && tarefaEditando==null" (click)="editar(tarefa)">editar</button>
