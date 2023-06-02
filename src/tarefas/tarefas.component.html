@@ -1,18 +1,3 @@
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title> Cadastro Tarefa</title>
-
-</head>
-
-<body>
     <hr>
         <h1 class="centralizar"> 
             cadastro de tarefas 
@@ -35,19 +20,18 @@
     <br>
 
     <div id="conteudo">
-        <div id = "categorias" *ngFor="let categoria of categoriasLista" >
-            <!-- (dragover)="onDragEnd($event)" class="{{categoria}}" -->
+        <div id = "categorias" *ngFor="let categoria of categoriasLista" (dragover)="onDragOver(categoria)">
+
            <div class="centralizar"> 
                 {{categoria}}
             </div>
             {{areaDeSoltar}}
             <hr>
-            <!-- draggable="true" (dragover)="onDragOver($event)" (dragstart)="onDragStart($event, tarefa)" -->
-            <div id="tarefa" *ngFor="let tarefa of getTarefas(categoria)" >
+           
+            <div id="tarefa" *ngFor="let tarefa of getTarefas(categoria)" draggable="true" (dragend)="onDragEnd(tarefa)">
 
                 {{tarefa.descricao}}
                 
-
                 <button id="remover" *ngIf="!tarefa.editando && tarefaEditando==null" (click)="removerTarefa(tarefa)">remover</button>
                 <button id="editar" *ngIf="!tarefa.editando && tarefaEditando==null" (click)="editar(tarefa)">editar</button>
                 <!-- se esta tarefa nao estiver em edicao e nhenhuma tarefa estar sendo editada pode-se remover ou editar -->
@@ -59,8 +43,3 @@
         </div>
         
     </div>
-
-
-</body>
-
-</html>

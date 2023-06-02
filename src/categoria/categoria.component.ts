@@ -1,10 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { forEach } from "@angular/router/src/utils/collection";
+import {  OnInit,Component } from "@angular/core";
 
 @Component({
-templateUrl: "./categoria.component.html",
-styleUrls: ["./categoria.component.css"]
-
+    templateUrl: "./categoria.component.html",
+    styleUrls: ["./categoria.component.css"]
 })
 
 export class CategoriaComponent implements OnInit{

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { CategoriaComponent } from "src/categoria/categoria.component";
 
 interface Tarefa{
     descricao: string,
@@ -82,6 +83,10 @@ export class TarefasComponent implements OnInit{
 
     }
 
+    ondrop(){
+        console.log("teste drop aaaaaaaa")
+    }
+
     salvar(tarefa):void{
 
             this.tarefaEditando.descricao = this.descricaoTarefa; 
@@ -125,29 +130,28 @@ export class TarefasComponent implements OnInit{
         return true
     }
 
-    // onDrop(){
-    //     console.log("opa caiu aqui")
+    // onDragLeave(categoria: string){
+    //     console.log("teste categoria")
     // }
-    // itemArrastado:Tarefa
-    // onDragStart(event: any, tarefa: Tarefa) {
-    //     //this.itemArrastado = event.target;
-    //     this.itemArrastado = tarefa
-    //     console.log(tarefa)
-    //   }
-    
-    //   onDragOver(event: any) {
-    //     event.preventDefault();
-    //   }
 
-    //   areaDeSoltar
-    //   onDragEnd(event: any) {
-    //     console.log(event.target)
-    //     console.log(this.itemArrastado + "opa")
-    //     this.itemArrastado.categoria = event.target.class
-    //     console.log(this.itemArrastado + "opa2")
-    //     this.areaDeSoltar = this.itemArrastado;
-    //     this.itemArrastado = null;
-    //   }
-        //console.log("opa caiu aqui")
+    categoriaSobre: string;
+
+    onDragEnd(tarefa: Tarefa){
+        console.log(tarefa)
+        console.log(this.categoriaSobre+ " teste")
+
+        // this.cate
+
+        tarefa.categoria=this.categoriaSobre
+
+        // this.categoriasLista.push()
+        
+        localStorage.setItem("tarefas",JSON.stringify(this.tarefasLista))
+
+    }
+    onDragOver(categoria: string){
+        console.log("categoria: "+categoria)
+        this.categoriaSobre = categoria
+    }
       
 }
