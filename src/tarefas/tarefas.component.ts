@@ -23,6 +23,8 @@ export class TarefasComponent implements OnInit{
 
     tarefaEditando: Tarefa = null; //recebe a tarefa que esta sendo editada
 
+    posicaoATrocar: number
+
     cadastrarTarefa():void{
         if(this.verificarTarefa()){
             let tarefaCadastrada: Tarefa = {
@@ -145,8 +147,12 @@ export class TarefasComponent implements OnInit{
         tarefa.categoria=this.categoriaSobre
 
         // this.categoriasLista.push()
-        
+
+        this.mudarPosicao(tarefa)
+
         localStorage.setItem("tarefas",JSON.stringify(this.tarefasLista))
+
+        this.posicaoATrocar = null
 
     }
     onDragOver(categoria: string){
@@ -154,4 +160,15 @@ export class TarefasComponent implements OnInit{
         this.categoriaSobre = categoria
     }
       
+    mudarPosicao(tarefa: Tarefa ){
+        let index = this.tarefasLista.indexOf(tarefa)
+
+        let removido = this.tarefasLista.splice(index,1)[0]
+
+        this.tarefasLista.splice(this.posicaoATrocar,0,removido)
+    }
+
+    pegarPosicao(tarefa: Tarefa){
+        this.posicaoATrocar = this.tarefasLista.indexOf(tarefa)
+    }
 }

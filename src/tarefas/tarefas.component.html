@@ -28,7 +28,7 @@
             {{areaDeSoltar}}
             <hr>
            
-            <div id="tarefa" *ngFor="let tarefa of getTarefas(categoria)" draggable="true" (dragend)="onDragEnd(tarefa)">
+            <div id="tarefa" *ngFor="let tarefa of getTarefas(categoria)" draggable="true" (dragend)="onDragEnd(tarefa)" (dragover)="pegarPosicao(tarefa)">
 
                 {{tarefa.descricao}}
                 
