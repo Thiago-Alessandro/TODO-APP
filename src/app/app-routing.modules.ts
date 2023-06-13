@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Route, RouterModule } from "@angular/router";
 import { CategoriaComponent } from "src/categoria/categoria.component";
+import { PropriedadesComponent } from "src/propriedades/propriedades.component";
 import { TarefasComponent } from "src/tarefas/tarefas.component";
 
 
@@ -12,6 +13,10 @@ const rotas: Route [] = [
     {
         path:'tarefas',
         component: TarefasComponent
+    },
+    {
+        path:"propriedades",
+        component: PropriedadesComponent
     },
     {
        path:" ",

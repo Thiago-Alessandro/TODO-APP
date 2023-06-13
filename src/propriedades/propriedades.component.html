@@ -1,0 +1,18 @@
+<h1>Adicionar propriedades</h1>
+
+<input type="text" placeholder="nome" [(ngModel)]="nomePropriedade"> 
+
+<select [(ngModel)]="tipoPropriedade">
+    <option value=""></option>
+    <option value="texto">texto</option>
+    <option value="número">número</option>
+    <option value="categoria">categoria</option>
+</select>
+
+<select [(ngModel)]="categoriaSelecionada" *ngIf="tipoPropriedade=='categoria'">
+    <option *ngFor="let categoria of categoriasLista">
+        {{categoria}}
+    </option>
+</select>
+
+<button (click)="adicionarPropriedade()">adicionar</button>

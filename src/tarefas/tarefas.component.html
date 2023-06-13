@@ -31,7 +31,14 @@
             <div id="tarefa" *ngFor="let tarefa of getTarefas(categoria)" draggable="true" (dragend)="onDragEnd(tarefa)" (dragover)="pegarPosicao(tarefa)">
 
                 {{tarefa.descricao}}
-                
+                <br>
+
+                <div *ngFor="let propriedade of propriedadesLista">
+                    <!-- rever isso aqui -->
+                    {{propriedade.nome}}
+                    <br>
+                </div>
+
                 <button id="remover" *ngIf="!tarefa.editando && tarefaEditando==null" (click)="removerTarefa(tarefa)">remover</button>
                 <button id="editar" *ngIf="!tarefa.editando && tarefaEditando==null" (click)="editar(tarefa)">editar</button>
                 <!-- se esta tarefa nao estiver em edicao e nhenhuma tarefa estar sendo editada pode-se remover ou editar -->

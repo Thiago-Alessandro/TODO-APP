@@ -18,6 +18,7 @@ export class TarefasComponent implements OnInit{
     categoriaSelecionada:string="";
     descricaoTarefa:string ="";
 
+    propriedadesLista:string[]=[]
     categoriasLista: string []=[]
     tarefasLista: Tarefa[]=[]
 
@@ -26,7 +27,7 @@ export class TarefasComponent implements OnInit{
     posicaoATrocar: number
 
     cadastrarTarefa():void{
-        if(this.verificarTarefa()){
+        if(this.verificarTarefa()){//rever verificacao aaaaaa
             let tarefaCadastrada: Tarefa = {
                 descricao: this.descricaoTarefa,
                 categoria: this.categoriaSelecionada,
@@ -42,6 +43,14 @@ export class TarefasComponent implements OnInit{
     }
 
     ngOnInit(){
+
+        let propriedades = localStorage.getItem("propriedades")
+
+        if(propriedades){
+
+            this.propriedadesLista =  JSON.parse(propriedades)
+        }
+
 
         let Tarefas = localStorage.getItem("tarefas");//recupera os itens que estao no localStorage
 

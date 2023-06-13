@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.modules';
 import { TarefasModule } from 'src/tarefas/tarefas.module';
 import { CategoriaModule } from 'src/categoria/categoria.Module';
+import { PropriedadesComponent } from 'src/propriedades/propriedades.component';
+import { PropriedadesModule } from 'src/propriedades/propriedades.module';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { CategoriaModule } from 'src/categoria/categoria.Module';
     FormsModule,
     AppRoutingModule,
     CategoriaModule,
-    TarefasModule
+    TarefasModule,
+    PropriedadesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
