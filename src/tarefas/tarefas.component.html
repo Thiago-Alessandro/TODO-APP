@@ -28,14 +28,15 @@
             {{areaDeSoltar}}
             <hr>
            
-            <div id="tarefa" *ngFor="let tarefa of getTarefas(categoria)" draggable="true" (dragend)="onDragEnd(tarefa)" (dragover)="pegarPosicao(tarefa)">
+            <div id="tarefa" *ngFor="let tarefa of getTarefas(categoria)" draggable="true" (dragend)="onDragEnd(tarefa)" (dragover)="pegarPosicao(tarefa)" style="display: grid; grid-template-columns: 1;">
 
                 {{tarefa.descricao}}
                 <br>
 
-                <div *ngFor="let propriedade of propriedadesLista">
+                <div *ngFor="let propriedade of propriedadesLista" >
                     <!-- rever isso aqui -->
-                    {{propriedade.nome}}
+                    <input class="a" placeholder="{{propriedade.nome}}" style="width: 50px;">
+                    
                     <br>
                 </div>
 

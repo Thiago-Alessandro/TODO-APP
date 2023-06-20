@@ -8,6 +8,7 @@ import { TarefasModule } from 'src/tarefas/tarefas.module';
 import { CategoriaModule } from 'src/categoria/categoria.Module';
 import { PropriedadesComponent } from 'src/propriedades/propriedades.component';
 import { PropriedadesModule } from 'src/propriedades/propriedades.module';
+import { UserRepository } from 'src/repositories/user.repository';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { PropriedadesModule } from 'src/propriedades/propriedades.module';
     TarefasModule,
     PropriedadesModule
   ],
-  providers: [],
+  providers: [UserRepository],//importanteisso daqui hein
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -27,7 +27,7 @@ export class TarefasComponent implements OnInit{
     posicaoATrocar: number
 
     cadastrarTarefa():void{
-        if(this.verificarTarefa()){//rever verificacao aaaaaa
+        if(this.verificarTarefa()){//rever verificacao (yes baby)
             let tarefaCadastrada: Tarefa = {
                 descricao: this.descricaoTarefa,
                 categoria: this.categoriaSelecionada,
