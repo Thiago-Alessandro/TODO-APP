@@ -1,51 +1,64 @@
 import { User } from "src/models/users/user";
-
-export const users :User[]= [
-    {
-        "id": "Joao.silva",
-        "name":"Joao da silva",
-        "groups":[],
-        "cardPermissions":[
-            "edit"
-        ],
-        "propertyPermissions":[
-            "edit"
-        ]
-    },
-    {
-        "id": "henrique.santos",
-        "name":"Henrique Santos",
-        "groups":[],
-        "cardPermissions":[
-            "add"
-        ],
-        "propertyPermissions":[
-            "add"
-        ]
-    },
-    {
-        "id": "Joao.silva2",
-        "name":"Joao da silva2",
-        "groups":[],
-        "cardPermissions":[
-            "edit"
-        ],
-        "propertyPermissions":[
-            "edit"
-        ]
-    },
-    {
-        "id": "diogo.defante",
-        "name":"diogo defante",
-        "groups":[],
-        "cardPermissions":[
-            "movecard",
-            "add",
-            "remove",
-            "edit"
-        ],
-        "propertyPermissions":[
-            "edit"
-        ]
-    }
+export const users: User[] = [
+	{
+		"id": "joao.silva",
+		"name": "João da Silva",
+		"groups": [],
+		"cardPermissions": [
+			"Add"
+		],
+		"propertiesPermissions": [
+			"Add"
+		]
+	},
+	{
+		"id": "henrique.santos",
+		"name": "Henrique Santos",
+		"groups": [],
+		"cardPermissions": [
+			"Edit"
+		],
+		"propertiesPermissions": [
+			"Edit"
+		]
+	},
+	{
+		"id": "igor.oliveira",
+		"name": "Igor Oliveira",
+		"groups": [],
+		"cardPermissions": [
+			"Remove"
+		],
+		"propertiesPermissions": [
+			"Remove"
+		]
+	},
+	{
+		"id": "igor.guimaraes",
+		"name": "Igor Guimaraes",
+		"groups": [],
+		"cardPermissions": [
+			"MoveCard"
+		],
+		"propertiesPermissions": [
+			"Add",
+			"Edit"
+		]
+	},
+	{
+		"id": "diogo.defante",
+		"name": "Diogo Defante",
+		"groups": [],
+		"cardPermissions": [
+			"Add",
+			"Edit",
+			"Remove",
+			"MoveCard"
+		],
+		"propertiesPermissions": [
+			"Add",
+			"Edit",
+			"Remove"
+		]
+	}
 ]

@@ -59,4 +59,6 @@ export class PropriedadesComponent implements OnInit{
 
     }
 
+    //n ta fazendo as verificacoes ainda ver la no tarefas q ta certo
+
 }

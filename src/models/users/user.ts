@@ -1,8 +1,8 @@
 export class User {
-    id: string = ""
-    name: string = ""
-    groups: string[] = []
-    cardPermissions: string[] = []
-    propertyPermissions: string[] = []
 
+    id: string = '';
+	name: string = '';
+	groups: string[] = [];
+	cardPermissions: string[] = [];
+	propertiesPermissions: string[] = [];
 }

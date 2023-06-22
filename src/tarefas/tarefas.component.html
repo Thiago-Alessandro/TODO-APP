@@ -11,7 +11,7 @@
                 {{categoria}}
             </option>
         </select>
-        <button *ngIf="!tarefaEditando" (click)="cadastrarTarefa()">Cadastrar</button>
+        <button *ngIf="!tarefaEditando" (click)="adicionarTarefa()">Cadastrar</button>
     </div>
 
     <br>
@@ -40,8 +40,8 @@
                     <br>
                 </div>
 
-                <button id="remover" *ngIf="!tarefa.editando && tarefaEditando==null" (click)="removerTarefa(tarefa)">remover</button>
-                <button id="editar" *ngIf="!tarefa.editando && tarefaEditando==null" (click)="editar(tarefa)">editar</button>
+                <button id="remover" *ngIf="!tarefa.editando && tarefaEditando==null" (click)="removerTarefaUsuario(tarefa)">remover</button>
+                <button id="editar" *ngIf="!tarefa.editando && tarefaEditando==null" (click)="editarTarefa(tarefa)">editar</button>
                 <!-- se esta tarefa nao estiver em edicao e nhenhuma tarefa estar sendo editada pode-se remover ou editar -->
 
                 <button id="salvar" *ngIf="tarefa.editando" (click)="salvar(tarefa)">salvar</button>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { CategoriaComponent } from "src/categoria/categoria.component";
+import { User } from "src/models/users/user";
+import { UserRepository } from "src/repositories/user.repository";
 
 interface Tarefa{
     descricao: string,
@@ -25,6 +27,76 @@ export class TarefasComponent implements OnInit{
     tarefaEditando: Tarefa = null; //recebe a tarefa que esta sendo editada
 
     posicaoATrocar: number
+
+    private userId: string = 'joao.silva';
+    private users: User[] = [];
+    user!: User;
+  
+    constructor(
+      private userRepository: UserRepository
+    ) {
+      this.users = this.userRepository.getUsers();
+      this.user = this.getUsuarioLogado();
+      console.log(this.user);
+    }
+
+
+    adicionarTarefa(): void {
+        if (!this.hasPermission('Add')) {
+          alert('Não pode cadastrar');
+          return;
+        }
+        alert('Pode cadastrar');
+
+        if(this.verificarTarefa()){//rever verificacao (yes baby)
+
+            let tarefaCadastrada: Tarefa = {
+                descricao: this.descricaoTarefa,
+                categoria: this.categoriaSelecionada,
+                editando: false
+            }
+        
+            this.tarefasLista.push(tarefaCadastrada)
+            localStorage.setItem("tarefas", JSON.stringify(this.tarefasLista))
+
+            this.descricaoTarefa = ""
+            this.categoriaSelecionada = "" //limpa input
+        }
+    }
+    
+      editarTarefa(tarefa:Tarefa): void {//n tinha parametro
+        if (!this.hasPermission('Edit')) {
+          alert('Não pode editar');
+          return;
+        }
+        this.editar(tarefa)
+        alert('Pode editar');
+      }
+    
+      removerTarefaUsuario(tarefa:Tarefa): void {
+        if (!this.hasPermission('Remove')) {
+          alert('Não pode remover');
+          return;
+        }
+        this.removerTarefa(tarefa)
+        alert('Pode remover');
+      }
+    
+      hasPermission(permission: string): boolean {
+        return this.user.cardPermissions.some((cardPermission) => {
+          return cardPermission === permission;
+        });
+      }
+    
+      private getUsuarioLogado(): User {
+        return this.users.find((user) => {
+          return user.id === this.userId
+        }) as User;
+      }
+
+
+
+    //aqui em baixo é meu// em cima do prof
 
     cadastrarTarefa():void{
         if(this.verificarTarefa()){//rever verificacao (yes baby)
@@ -141,28 +213,30 @@ export class TarefasComponent implements OnInit{
         return true
     }
 
-    // onDragLeave(categoria: string){
-    //     console.log("teste categoria")
-    // }
-
     categoriaSobre: string;
 
     onDragEnd(tarefa: Tarefa){
-        console.log(tarefa)
-        console.log(this.categoriaSobre+ " teste")
 
-        // this.cate
+        if(!this.hasPermission('MoveCard')){
+            alert('parado ai, nao se mova amigo')
+        }else{
+            console.log(tarefa)
+            console.log(this.categoriaSobre+ " teste")
 
-        tarefa.categoria=this.categoriaSobre
+            // this.cate
 
-        // this.categoriasLista.push()
+            tarefa.categoria=this.categoriaSobre
 
-        this.mudarPosicao(tarefa)
+            // this.categoriasLista.push()
 
-        localStorage.setItem("tarefas",JSON.stringify(this.tarefasLista))
+            this.mudarPosicao(tarefa)
 
-        this.posicaoATrocar = null
+            localStorage.setItem("tarefas",JSON.stringify(this.tarefasLista))
 
+            this.posicaoATrocar = null
+            alert('pode edita meu mano')
+
+        }     
     }
     onDragOver(categoria: string){
         console.log("categoria: "+categoria)
