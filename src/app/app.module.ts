@@ -9,6 +9,8 @@ import { CategoriaModule } from 'src/categoria/categoria.Module';
 import { PropriedadesComponent } from 'src/propriedades/propriedades.component';
 import { PropriedadesModule } from 'src/propriedades/propriedades.module';
 import { UserRepository } from 'src/repositories/user.repository';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthguardService } from 'src/services/auth-guard.services';
 
 
 @NgModule({
@@ -21,9 +23,13 @@ import { UserRepository } from 'src/repositories/user.repository';
     AppRoutingModule,
     CategoriaModule,
     TarefasModule,
-    PropriedadesModule
+    PropriedadesModule,
+    HttpClientModule
   ],
-  providers: [UserRepository],//importanteisso daqui hein
+  providers: [
+    UserRepository,
+    AuthguardService
+  ],//importanteisso daqui hein
   bootstrap: [AppComponent]
 })
 export class AppModule { }

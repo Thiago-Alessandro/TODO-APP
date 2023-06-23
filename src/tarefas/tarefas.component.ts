@@ -35,9 +35,15 @@ export class TarefasComponent implements OnInit{
     constructor(
       private userRepository: UserRepository
     ) {
-      this.users = this.userRepository.getUsers();
-      this.user = this.getUsuarioLogado();
-      console.log(this.user);
+
+       this.userRepository.getUsers().subscribe({
+        next:(value) =>{
+            this.users =value
+            
+            this.user = this.getUsuarioLogado();
+        }
+      });
+      //ta retornando undefined
     }
 
 
@@ -83,6 +89,8 @@ export class TarefasComponent implements OnInit{
       }
     
       hasPermission(permission: string): boolean {
+        console.log('aaaa')
+        console.log(this.user)
         return this.user.cardPermissions.some((cardPermission) => {
           return cardPermission === permission;
         });
