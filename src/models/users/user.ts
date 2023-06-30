@@ -5,4 +5,6 @@ export class User {
 	groups: string[] = [];
 	cardPermissions: string[] = [];
 	propertiesPermissions: string[] = [];
+	// cardPermissions: string[] = [];
+	// propertiesPermissions: string[] = [];
 }
