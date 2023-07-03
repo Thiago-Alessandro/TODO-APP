@@ -28,7 +28,7 @@ export class TarefasComponent implements OnInit{
 
     posicaoATrocar: number
 
-    private userId: string = 'joao.silva';
+    private userId: string = '';
     private users: User[] = [];
     user!: User;
   
@@ -123,6 +123,8 @@ export class TarefasComponent implements OnInit{
     }
 
     ngOnInit(){
+
+        this.userId = localStorage.getItem('usuarioLogadoId')
 
         let propriedades = localStorage.getItem("propriedades")
 
@@ -225,10 +227,10 @@ export class TarefasComponent implements OnInit{
 
     onDragEnd(tarefa: Tarefa){
 
-        if(!this.hasPermission('MoveCard')){
+        if(!this.hasPermission('Move')){//MoveCard como parametro
             alert('parado ai, nao se mova amigo')
         }else{
-            console.log(tarefa)
+            console.log(tarefa)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
             console.log(this.categoriaSobre+ " teste")
 
             // this.cate

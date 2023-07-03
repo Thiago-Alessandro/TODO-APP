@@ -11,6 +11,8 @@ import { PropriedadesModule } from 'src/propriedades/propriedades.module';
 import { UserRepository } from 'src/repositories/user.repository';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthguardService } from 'src/services/auth-guard.services';
+import { LoginModule } from 'src/login/login.module';
+import { CadastroModule } from 'src/cadastro/cadastro.module';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { AuthguardService } from 'src/services/auth-guard.services';
     CategoriaModule,
     TarefasModule,
     PropriedadesModule,
-    HttpClientModule
+    HttpClientModule,
+    LoginModule,
+    CadastroModule
   ],
   providers: [
     UserRepository,

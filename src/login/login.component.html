@@ -1,0 +1,14 @@
+<div style="display:flex;">
+    <P *ngIf="loginErrado" style=" justify-content: center; align-items:center">nome ou senha incorretos</P>
+    <div style=" justify-content: center; align-items:center">
+        <input placeholder="name" [(ngModel)]="name">
+    </div>
+    <div style=" justify-content: center; align-items:center">
+        <input placeholder="password" [(ngModel)]="password">
+    </div>
+    <br>
+    <button (click)="verificarLogin()" style="justify-content: center; align-items:center;">Login</button>
+    <br>
+    <br>
+    <button (click)="redirecionarParaCadastro()">ir para cadastro</button>
+</div>
