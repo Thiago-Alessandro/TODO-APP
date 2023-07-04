@@ -33,13 +33,13 @@ export class CadastroComponent{
       }
 
       cadastrarUsuario():void{
-        let novoUsuario:User = {
+        let novoUsuario = {
             id: this.calcularId(),
             name: this.name,
             password: this.password,
-            groups: ['teste'],
-            cardPermissions: ['Move', 'Add'],
-            propertiesPermissions: ['Create']
+            groups: 'teste',
+            cardPermissions: 'Move, Add',
+            propertiesPermissions: 'Create'
         }
         this.userRepository.addUser(novoUsuario).subscribe(
             (response) => {

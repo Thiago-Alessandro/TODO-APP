@@ -21,13 +21,13 @@ export class UserRepository {
             const users: User[]=[];
             for(const value of values){//value seria cada objeto usuario
                 
-                let groups:string = JSON.stringify(value.groups)
-                let cardPermissions:string = JSON.stringify(value.cardPermissions)
-                let propertiesPermissions:string = JSON.stringify(value.propertiesPermissions)
+                // let groups:string = JSON.stringify(value.groups)
+                // let cardPermissions:string = JSON.stringify(value.cardPermissions)
+                // let propertiesPermissions:string = JSON.stringify(value.propertiesPermissions)
 
-                value.groups = groups.slice(1,groups.length - 1).split(', ')
-                value.cardPermissions = cardPermissions.slice(1,cardPermissions.length - 1).split(', ')
-                value.propertiesPermissions = propertiesPermissions.slice(1,propertiesPermissions.length - 1).split(', ')
+                // value.groups = groups.slice(1,groups.length - 1).split(', ')
+                // value.cardPermissions = cardPermissions.slice(1,cardPermissions.length - 1).split(', ')
+                // value.propertiesPermissions = propertiesPermissions.slice(1,propertiesPermissions.length - 1).split(', ')
 
                 console.log(value)
 
@@ -37,7 +37,7 @@ export class UserRepository {
         }))
     }
 
-    addUser(user:User):Observable<User>{
+    addUser(user):Observable<User>{//tipar de user
         return this.httpClient.post<User>(API_URL, user) 
     }
 

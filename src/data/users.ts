@@ -6,11 +6,11 @@ let userRepository: UserRepository
 
 
 
-export const users: User[] =  userRepository.getUsers().subscribe({
-	next:(value) =>{
-		this.users = value
-	}
-  });//tem algo de errado aq (provavelmente qnd adiciono n vai pq aq n ta atualizando a lista mas n sei oq setar)
+export const users: User[] = []// userRepository.getUsers().subscribe({
+// 	next:(value) =>{
+// 		this.users = value
+// 	}
+//   });//tem algo de errado aq (provavelmente qnd adiciono n vai pq aq n ta atualizando a lista mas n sei oq setar)
 
 
 // dados.getUsers().forEach(usuarios =>{

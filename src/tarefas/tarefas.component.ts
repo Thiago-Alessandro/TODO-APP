@@ -1,7 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { CategoriaComponent } from "src/categoria/categoria.component";
+
 import { User } from "src/models/users/user";
+import { CardPermission } from "src/models/users/cardPermission";
+
 import { UserRepository } from "src/repositories/user.repository";
+import { CardPermissionRepository } from "src/repositories/cardPermission.repository"
 
 interface Tarefa{
     descricao: string,
@@ -31,10 +35,18 @@ export class TarefasComponent implements OnInit{
     private userId: string = '';
     private users: User[] = [];
     user!: User;
+    private cardPermissions: CardPermission[] = []
   
     constructor(
-      private userRepository: UserRepository
+      private userRepository: UserRepository,
+      private cardPermissionRepositoty :CardPermissionRepository 
     ) {
+
+        this.cardPermissionRepositoty.getUsers().subscribe({
+            next:(value) => {
+                this.cardPermissions = value
+            }
+        })
 
        this.userRepository.getUsers().subscribe({
         next:(value) =>{
@@ -91,9 +103,15 @@ export class TarefasComponent implements OnInit{
       hasPermission(permission: string): boolean {
         console.log('aaaa')
         console.log(this.user)
-        return this.user.cardPermissions.some((cardPermission) => {
-          return cardPermission === permission;
-        });
+        for(let cardPermission of this.cardPermissions){
+            if(cardPermission.id_user === this.userId && cardPermission.permission === permission){
+                return true
+            }
+        }
+        return false
+        // return this.user.cardPermissions.some((cardPermission) => {
+        //   return cardPermission === permission;
+        // });
       }
     
       private getUsuarioLogado(): User {
