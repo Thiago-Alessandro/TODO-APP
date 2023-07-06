@@ -2,6 +2,7 @@ import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 import { Component, OnInit } from "@angular/core";
 import { User } from "src/models/users/user";
 import { UserRepository } from "src/repositories/user.repository";
+import { CookiesServices } from "src/services/cookies-services";
 
 @Component({
     selector:'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent{
     loginErrado:boolean
 
     constructor(
-        private userRepository: UserRepository
+        private userRepository: UserRepository,
+        private cookiesServices: CookiesServices
       ) {
   
          this.userRepository.getUsers().subscribe({
@@ -40,7 +42,8 @@ export class LoginComponent{
             if(this.name === user.name && this.password === user.password){
                 this.loginErrado = false
                 // localStorage.clear
-                localStorage.setItem('usuarioLogadoId', user.id)
+                localStorage.setItem('usuarioLogadoId', user.id_user)
+                this.cookiesServices.criarCookie('usuario', JSON.stringify(user))
                 location.replace('http://localhost:4200/tarefas')
                 return
             }

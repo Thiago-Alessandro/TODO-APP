@@ -7,6 +7,11 @@ import { CardPermission } from "src/models/users/cardPermission";
 import { UserRepository } from "src/repositories/user.repository";
 import { CardPermissionRepository } from "src/repositories/cardPermission.repository"
 
+import { PropertyPermissionRepository } from "src/repositories/propertyPermission.repository";
+import { PropertyPermission } from "src/models/users/propertyPermission";
+
+import { CookiesServices } from "src/services/cookies-services";
+
 interface Tarefa{
     descricao: string,
     categoria: string,
@@ -33,29 +38,41 @@ export class TarefasComponent implements OnInit{
     posicaoATrocar: number
 
     private userId: string = '';
-    private users: User[] = [];
     user!: User;
+
+    private users: User[] = [];
     private cardPermissions: CardPermission[] = []
+    private propertyPermissions:PropertyPermission[]=[]
   
     constructor(
       private userRepository: UserRepository,
-      private cardPermissionRepositoty :CardPermissionRepository 
+      private cardPermissionRepositoty :CardPermissionRepository,
+      private propertyPermissionRepository: PropertyPermissionRepository,
+
+      private cookiesServices:CookiesServices
+
     ) {
 
-        this.cardPermissionRepositoty.getUsers().subscribe({
+        this.userRepository.getUsers().subscribe({
+            next:(value) =>{
+                this.users =value
+                
+                this.user = this.getUsuarioLogado();
+            }
+          });
+          //ta retornando undefined
+
+        this.cardPermissionRepositoty.getPropertyPermissions().subscribe({
             next:(value) => {
                 this.cardPermissions = value
             }
         })
 
-       this.userRepository.getUsers().subscribe({
-        next:(value) =>{
-            this.users =value
-            
-            this.user = this.getUsuarioLogado();
-        }
-      });
-      //ta retornando undefined
+       this.propertyPermissionRepository.getPropertyPermissions().subscribe({
+            next:(value) =>{
+                this.propertyPermissions = value
+            }
+        });
     }
 
 
@@ -116,7 +133,7 @@ export class TarefasComponent implements OnInit{
     
       private getUsuarioLogado(): User {
         return this.users.find((user) => {
-          return user.id === this.userId
+          return user.id_user === this.userId
         }) as User;
       }
 

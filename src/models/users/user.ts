@@ -1,11 +1,9 @@
 export class User {
 
-    id: string = '';
+    id_user: string = '';
 	name: string = '';
+	email:string = '';
 	password: string = '';
-	groups: string[] = [];
-	cardPermissions: string[] = [];
-	propertiesPermissions: string[] = [];
 	// cardPermissions: string[] = [];
 	// propertiesPermissions: string[] = [];
 }

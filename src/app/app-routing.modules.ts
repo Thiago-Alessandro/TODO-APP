@@ -19,7 +19,8 @@ const rotas: Route [] = [
     },
     {
         path:'categoria',
-        component: CategoriaComponent
+        component: CategoriaComponent,
+        canActivate: [AuthguardService]
     },
     {
         path:'tarefas',
@@ -28,7 +29,8 @@ const rotas: Route [] = [
     },
     {
         path:"propriedades",
-        component: PropriedadesComponent
+        component: PropriedadesComponent,
+        canActivate: [AuthguardService]
     },
     {
        path:"",

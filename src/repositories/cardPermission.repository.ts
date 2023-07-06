@@ -15,13 +15,11 @@ export class CardPermissionRepository {
         private httpClient: HttpClient
     ){}
 
-    getUsers(): Observable<CardPermission[]> {
+    getPropertyPermissions(): Observable<CardPermission[]> {
         return this.httpClient.get<CardPermission[]>(API_URL)
         .pipe(map(values => {
             const cardPermissions: CardPermission[]=[];
             for(const value of values){//value seria cada objeto usuario
-
-                console.log('testando aoaoaooa')
 
                 console.log(value)
 
@@ -31,8 +29,8 @@ export class CardPermissionRepository {
         }))
     }
 
-    // addUser(user):Observable<CardPermission>{//tipar de user
-    //     return this.httpClient.post<CardPermission>(API_URL, user) 
-    // }
+    addCardPermission(permission:CardPermission):Observable<CardPermission>{//tipar de user
+        return this.httpClient.post<CardPermission>(API_URL, permission) 
+    }
 
 }
